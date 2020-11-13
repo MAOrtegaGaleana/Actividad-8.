@@ -1,5 +1,6 @@
-from PySide2.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QTableWidgetItem
+from PySide2.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QTableWidgetItem, QGraphicsScene
 from PySide2.QtCore import Slot
+from PySide2.QtGui import QPen, QColor, QTransform
 from ui_mainwindow import Ui_MainWindow
 from particulas import Particulas
 from particula import Particula
@@ -19,6 +20,47 @@ class MainWindow(QMainWindow):
         self.ui.actionGuardar.triggered.connect(self.click_guardar_archivo)
         self.ui.mostrar_tabla_pushButton.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id)
+
+        self.scene = QGraphicsScene()
+        self.ui.graphicsView.setScene(self.scene)
+
+        self.ui.dibujar_pushButton.clicked.connect(self.dibujar)
+        self.ui.limpiar_pushButton.clicked.connect(self.limpiar)
+
+    def wheelEvent(self, event):
+        if event.delta() > 0:
+            self.ui.graphicsView.scale(1.2, 1.2)
+        else:
+            self.ui.graphicsView.scale(0.8, 0.8)
+
+    @Slot()
+    def dibujar(self):
+        pen2 = QPen()
+        pen2.setWidth(0.5)
+        self.scene.addLine(0,50,0,-50, pen2)
+        self.scene.addLine(50,0,-50,0, pen2)
+
+        for particula in self.particulas:
+            pen = QPen()
+            pen.setWidth(1)
+            c_red = particula.red
+            c_green = particula.green
+            c_blue = particula.blue
+            color = QColor(c_red,c_green, c_blue)
+            pen.setColor(color)
+
+            c_origenx = particula.origenx       
+            c_origeny = -(particula.origeny)
+            c_destinox = particula.destinox
+            c_destinoy = -(particula.destinoy)
+            
+            self.scene.addEllipse(c_origenx, c_origeny,.8,.8, pen)
+            self.scene.addEllipse(c_destinox, c_destinoy,.8,.8, pen)
+            self.scene.addLine(c_origenx, c_origeny, c_destinox, c_destinoy, pen)
+
+    @Slot()
+    def limpiar(self):
+        self.scene.clear()
 
     @Slot()
     def buscar_id(self):
