@@ -27,11 +27,32 @@ class MainWindow(QMainWindow):
         self.ui.dibujar_pushButton.clicked.connect(self.dibujar)
         self.ui.limpiar_pushButton.clicked.connect(self.limpiar)
 
+        self.ui.ordenar_id_pushButton.clicked.connect(self.ordenar_id)
+        self.ui.ordenar_distancia_pushButton.clicked.connect(self.ordenar_distancia)
+        self.ui.ordenar_velocidad_pushButton.clicked.connect(self.ordenar_velocidad)
+
     def wheelEvent(self, event):
         if event.delta() > 0:
             self.ui.graphicsView.scale(1.2, 1.2)
         else:
             self.ui.graphicsView.scale(0.8, 0.8)
+
+    #def sort_by_identificacion(self):
+        #return particula.origenx
+
+    @Slot()
+    def ordenar_id(self):
+        self.particulas.ordenarid()
+    
+    @Slot()
+    def ordenar_distancia(self):
+        self.particulas.ordenardistancia()
+        #print('distancia')
+
+    @Slot()
+    def ordenar_velocidad(self):
+        self.particulas.ordenarvelocidad()
+        #print('velocidad')
 
     @Slot()
     def dibujar(self):

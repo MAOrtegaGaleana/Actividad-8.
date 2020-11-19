@@ -53,3 +53,12 @@ class Particulas:
             return 1
         except:
             return 0
+
+    def ordenarid(self):
+        self.__particulas.sort(key= lambda particula: particula.identificacion)
+
+    def ordenardistancia(self):
+        self.__particulas.sort(key= lambda particula: particula.d,reverse=True)
+
+    def ordenarvelocidad(self):
+        self.__particulas.sort(key= lambda particula: particula.velocidad)

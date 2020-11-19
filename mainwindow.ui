@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
-    <height>495</height>
+    <width>423</width>
+    <height>524</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -27,10 +27,10 @@
        <widget class="QGroupBox" name="groupBox">
         <property name="geometry">
          <rect>
-          <x>9</x>
-          <y>9</y>
+          <x>0</x>
+          <y>0</y>
           <width>401</width>
-          <height>351</height>
+          <height>441</height>
          </rect>
         </property>
         <property name="title">
@@ -301,8 +301,60 @@
            <x>220</x>
            <y>10</y>
            <width>171</width>
-           <height>331</height>
+           <height>411</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="ordenar_id_pushButton">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>370</y>
+           <width>121</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="ordenar_distancia_pushButton">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>390</y>
+           <width>121</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Distancia</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="ordenar_velocidad_pushButton">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>410</y>
+           <width>121</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Velocidad</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>350</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Ordenar por:</string>
          </property>
         </widget>
        </widget>
@@ -372,7 +424,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>482</width>
+     <width>423</width>
      <height>21</height>
     </rect>
    </property>
