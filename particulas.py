@@ -62,3 +62,4 @@ class Particulas:
 
     def ordenarvelocidad(self):
         self.__particulas.sort(key= lambda particula: particula.velocidad)
+        

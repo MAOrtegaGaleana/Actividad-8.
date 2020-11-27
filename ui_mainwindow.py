@@ -22,6 +22,8 @@ class Ui_MainWindow(object):
         self.actionAbrir.setObjectName(u"actionAbrir")
         self.actionGuardar = QAction(MainWindow)
         self.actionGuardar.setObjectName(u"actionGuardar")
+        self.actionGrafo = QAction(MainWindow)
+        self.actionGrafo.setObjectName(u"actionGrafo")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -172,11 +174,15 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QRect(0, 0, 423, 21))
         self.menuArchivo = QMenu(self.menubar)
         self.menuArchivo.setObjectName(u"menuArchivo")
+        self.menuVer = QMenu(self.menubar)
+        self.menuVer.setObjectName(u"menuVer")
         MainWindow.setMenuBar(self.menubar)
 
         self.menubar.addAction(self.menuArchivo.menuAction())
+        self.menubar.addAction(self.menuVer.menuAction())
         self.menuArchivo.addAction(self.actionAbrir)
         self.menuArchivo.addAction(self.actionGuardar)
+        self.menuVer.addAction(self.actionGrafo)
 
         self.retranslateUi(MainWindow)
 
@@ -195,6 +201,10 @@ class Ui_MainWindow(object):
         self.actionGuardar.setText(QCoreApplication.translate("MainWindow", u"Guardar", None))
 #if QT_CONFIG(shortcut)
         self.actionGuardar.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionGrafo.setText(QCoreApplication.translate("MainWindow", u"Grafo", None))
+#if QT_CONFIG(shortcut)
+        self.actionGrafo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+G", None))
 #endif // QT_CONFIG(shortcut)
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Particula:", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Colo(rgb):", None))
@@ -221,7 +231,8 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tabla", None))
         self.dibujar_pushButton.setText(QCoreApplication.translate("MainWindow", u"Dibujar", None))
         self.limpiar_pushButton.setText(QCoreApplication.translate("MainWindow", u"Limpiar", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"P\u00e1gina", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Gr\u00e1fico", None))
         self.menuArchivo.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
+        self.menuVer.setTitle(QCoreApplication.translate("MainWindow", u"Ver", None))
     # retranslateUi
 

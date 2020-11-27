@@ -4,6 +4,7 @@ from PySide2.QtGui import QPen, QColor, QTransform
 from ui_mainwindow import Ui_MainWindow
 from particulas import Particulas
 from particula import Particula
+from pprint import pprint, pformat
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -31,15 +32,40 @@ class MainWindow(QMainWindow):
         self.ui.ordenar_distancia_pushButton.clicked.connect(self.ordenar_distancia)
         self.ui.ordenar_velocidad_pushButton.clicked.connect(self.ordenar_velocidad)
 
+        self.ui.actionGrafo.triggered.connect(self.mostrar_grafos)
+
     def wheelEvent(self, event):
         if event.delta() > 0:
             self.ui.graphicsView.scale(1.2, 1.2)
         else:
             self.ui.graphicsView.scale(0.8, 0.8)
+    
+    @Slot()
+    def mostrar_grafos(self):
+        grafos = dict()
+        grafos = {
+        }
+        for particula in self.particulas:
+            origin = (particula.origenx,particula.origeny)
+            destination = (particula.destinox,particula.destinoy)
+            arista_origin = (particula.destinox,particula.destinoy,particula.d)
+            arista_destination = (particula.origenx,particula.origeny,particula.d)
 
-    #def sort_by_identificacion(self):
-        #return particula.origenx
+            if origin in grafos:
+                grafos[origin].append(arista_origin)
+            else:
+                grafos[origin] = [arista_origin]
 
+            if destination in grafos:
+                grafos[destination].append(arista_destination)
+            else:
+                grafos[destination] = [arista_destination]
+        str = pformat(grafos, width=40, indent=1)
+        print(str)
+        self.ui.salida.clear()
+        self.ui.salida.insertPlainText(str)
+
+        
     @Slot()
     def ordenar_id(self):
         self.particulas.ordenarid()
@@ -47,19 +73,13 @@ class MainWindow(QMainWindow):
     @Slot()
     def ordenar_distancia(self):
         self.particulas.ordenardistancia()
-        #print('distancia')
 
     @Slot()
     def ordenar_velocidad(self):
         self.particulas.ordenarvelocidad()
-        #print('velocidad')
 
     @Slot()
     def dibujar(self):
-        pen2 = QPen()
-        pen2.setWidth(0.5)
-        self.scene.addLine(0,50,0,-50, pen2)
-        self.scene.addLine(50,0,-50,0, pen2)
 
         for particula in self.particulas:
             pen = QPen()
@@ -71,9 +91,9 @@ class MainWindow(QMainWindow):
             pen.setColor(color)
 
             c_origenx = particula.origenx       
-            c_origeny = -(particula.origeny)
+            c_origeny = particula.origeny
             c_destinox = particula.destinox
-            c_destinoy = -(particula.destinoy)
+            c_destinoy = particula.destinoy
             
             self.scene.addEllipse(c_origenx, c_origeny,.8,.8, pen)
             self.scene.addEllipse(c_destinox, c_destinoy,.8,.8, pen)
@@ -210,7 +230,7 @@ class MainWindow(QMainWindow):
         identificacion = int(self.ui.id_lineEdit.text())
         origenx = int(self.ui.origenx_lineEdit.text())
         origeny = int(self.ui.origeny_lineEdit.text())
-        destinox = int(self.ui.destinoy_lineEdit.text())
+        destinox = int(self.ui.destinox_lineEdit.text())
         destinoy = int(self.ui.destinoy_lineEdit.text())
         velocidad = int(self.ui.velocidad_lineEdit.text())
         red = int(self.ui.red_lineEdit.text())
@@ -225,7 +245,7 @@ class MainWindow(QMainWindow):
         identificacion = int(self.ui.id_lineEdit.text())
         origenx = int(self.ui.origenx_lineEdit.text())
         origeny = int(self.ui.origeny_lineEdit.text())
-        destinox = int(self.ui.destinoy_lineEdit.text())
+        destinox = int(self.ui.destinox_lineEdit.text())
         destinoy = int(self.ui.destinoy_lineEdit.text())
         velocidad = int(self.ui.velocidad_lineEdit.text())
         red = int(self.ui.red_lineEdit.text())
